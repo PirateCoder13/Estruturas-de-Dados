@@ -1,0 +1,51 @@
+# Visual Studio Code
+.vscode/
+.vscode/*
+
+# Executáveis
+*.exe
+*.out
+*.app
+
+# Arquivos de compilação
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+
+# Arquivos temporários
+*.tmp
+*.temp
+*~
+
+# Logs
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.swp
+*.swo
+
+# IDE
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
