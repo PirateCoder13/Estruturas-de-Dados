@@ -3,7 +3,9 @@
 **Disciplina:** Estruturas de Dados  
 **Professor:** Baroni  
 **Curso:** Análise e Desenvolvimento de Sistemas  
-**Entrega:** 27/06/2025
+**Entrega:** 27/06/2025  
+**Empresa:** PiratariaCodificada  
+**Autores:** Joao Gualberto, Yasmin Pereira, Gabriela Rocca
 
 ## 📋 Descrição do Projeto
 
@@ -26,9 +28,12 @@ Ed-02/
 ├── audio_player.c                  # Reprodução de áudio MP3
 ├── compilar.bat                    # Script de compilação
 ├── README.md                       # Este arquivo
-├── RELATORIO_TECNICO.md            # Relatório detalhado
-└── musicas/                        # Pasta com arquivos MP3
-    └── paper-planes-chill-future-beat-283956.mp3
+└── musicas/                        # Pasta com 5 arquivos MP3 reais
+    ├── calcinhapreta-dois-amoresduas-paixoes.mp3
+    ├── henriqueejulianooficial-desbeijar-minha-boca.mp3
+    ├── hungriahiphop-beijo-com-trap-wwwpalcomp3comdjmixer-djmixeroficial.mp3
+    ├── hungriahiphop-umpedido.mp3
+    └── paper-planes-chill-future-beat.mp3
 ```
 
 ## 🚀 Como Executar
@@ -50,8 +55,15 @@ music_player.exe
 2. **Carregue músicas de exemplo:** Escolha "1" quando perguntado
 3. **Reproduza MP3 real:** 
    - Opção "7" (Reproduzir música)
-   - Digite: `paper-planes-chill-future-beat-283956`
-   - **A música MP3 vai tocar de verdade!** 🎵
+   - Digite o nome de qualquer MP3 da pasta `musicas/`
+   - **As músicas MP3 vão tocar de verdade!** 🎵
+
+### 🎵 Músicas Disponíveis:
+- `calcinhapreta-dois-amoresduas-paixoes`
+- `henriqueejulianooficial-desbeijar-minha-boca`
+- `hungriahiphop-beijo-com-trap-wwwpalcomp3comdjmixer-djmixeroficial`
+- `hungriahiphop-umpedido`
+- `paper-planes-chill-future-beat`
 
 ## 🎛️ Funcionalidades
 
@@ -91,5 +103,5 @@ music_player.exe
 Este projeto vai além de uma simulação - **reproduz música de verdade**, demonstrando aplicação prática das estruturas de dados em um sistema real de áudio.
 
 ---
-**Desenvolvido para MelodiaCode** 🎵  
-**Autor:** [Seu Nome]
+**Empresa:** PiratariaCodificada 🎵  
+**Autores:** Joao Gualberto, Yasmin Pereira, Gabriela Rocca
