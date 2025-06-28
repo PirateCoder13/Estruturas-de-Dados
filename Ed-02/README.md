@@ -54,9 +54,29 @@ music_player.exe
 1. **Execute o programa**
 2. **Carregue músicas de exemplo:** Escolha "1" quando perguntado
 3. **Reproduza MP3 real:** 
-   - Opção "7" (Reproduzir música)
-   - Digite o nome de qualquer MP3 da pasta `musicas/`
+   - Opção "6" (Reproduzir música)
+   - Digite o nome de qualquer MP3 da pasta `musicas/` (ou apenas parte do nome)
    - **As músicas MP3 vão tocar de verdade!** 🎵
+
+### 🎮 Menu de Opções:
+```
+  1. Adicionar musica a biblioteca
+  2. Escanear pasta musicas/ (carregar todos)
+  3. Remover musica da biblioteca
+  4. Listar todas as musicas
+  5. Buscar musica por titulo
+  6. Reproduzir musica
+  7. Pausar/Retomar reproducao
+  8. Parar reproducao
+  9. Proxima musica
+ 10. Musica anterior
+ 11. Adicionar musica a fila
+ 12. Ver fila de reproducao
+ 13. Ver historico
+ 14. Status do player
+ 15. Alternar modo shuffle
+ 16. Sair
+```
 
 ### 🎵 Músicas Disponíveis:
 - `calcinhapreta-dois-amoresduas-paixoes`
@@ -79,6 +99,8 @@ music_player.exe
 - ✅ Pausar e retomar reprodução
 - ✅ Parar reprodução
 - ✅ Navegar entre músicas (próxima/anterior)
+- ✅ **Modo shuffle (reprodução aleatória)**
+- ✅ **Busca inteligente por similaridade**
 
 ### Estruturas de Dados
 - ✅ **Lista Duplamente Encadeada:** Biblioteca musical

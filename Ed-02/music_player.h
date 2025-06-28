@@ -14,6 +14,7 @@
 #include <string.h>
 #include <windows.h>
 #include <mmsystem.h>
+#include <time.h>
 #pragma comment(lib, "winmm.lib")
 
 // Estrutura para representar uma musica
@@ -65,6 +66,7 @@ typedef struct {
     FilaReproducao* fila_reproducao;
     Musica* musica_atual;
     int reproduzindo; // 0 = parado, 1 = tocando, 2 = pausado
+    int shuffle_ativo; // 0 = desativado, 1 = ativado
 } MusicPlayer;
 
 // Funcoes da biblioteca musical (lista duplamente encadeada)
@@ -75,6 +77,7 @@ void carregar_todos_mp3(BibliotecaMusical* biblioteca);
 void remover_musica(BibliotecaMusical* biblioteca, char* titulo);
 void listar_musicas(BibliotecaMusical* biblioteca);
 Musica* buscar_musica(BibliotecaMusical* biblioteca, char* titulo);
+Musica* buscar_musica_similar(BibliotecaMusical* biblioteca, char* termo_busca);
 void liberar_biblioteca(BibliotecaMusical* biblioteca);
 
 // Funcoes do historico (pilha)
@@ -98,6 +101,8 @@ void pausar_player(MusicPlayer* player);
 void parar_player(MusicPlayer* player);
 void proximo_musica(MusicPlayer* player);
 void anterior_musica(MusicPlayer* player);
+void alternar_shuffle(MusicPlayer* player);
+Musica* obter_musica_aleatoria(BibliotecaMusical* biblioteca);
 void liberar_player(MusicPlayer* player);
 
 // Funcoes de reproducao de audio

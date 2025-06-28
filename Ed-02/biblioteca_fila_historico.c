@@ -182,6 +182,44 @@ Musica* buscar_musica(BibliotecaMusical* biblioteca, char* titulo) {
     return NULL; // Nao encontrou
 }
 
+// Função para busca por similaridade (busca parcial)
+Musica* buscar_musica_similar(BibliotecaMusical* biblioteca, char* termo_busca) {
+    Musica* atual = biblioteca->primeiro;
+    Musica* melhor_match = NULL;
+    
+    // Converter termo de busca para minúsculo
+    char termo_lower[100];
+    strcpy(termo_lower, termo_busca);
+    for (int i = 0; termo_lower[i]; i++) {
+        if (termo_lower[i] >= 'A' && termo_lower[i] <= 'Z') {
+            termo_lower[i] = termo_lower[i] + 32;
+        }
+    }
+    
+    while (atual != NULL) {
+        // Converter título atual para minúsculo
+        char titulo_lower[100];
+        strcpy(titulo_lower, atual->titulo);
+        for (int i = 0; titulo_lower[i]; i++) {
+            if (titulo_lower[i] >= 'A' && titulo_lower[i] <= 'Z') {
+                titulo_lower[i] = titulo_lower[i] + 32;
+            }
+        }
+        
+        // Verificar se o termo está contido no título
+        if (strstr(titulo_lower, termo_lower) != NULL) {
+            melhor_match = atual;
+            // Se encontrou uma correspondência exata, retorna imediatamente
+            if (strcmp(titulo_lower, termo_lower) == 0) {
+                return atual;
+            }
+        }
+        atual = atual->proximo;
+    }
+    
+    return melhor_match; // Retorna a melhor correspondência ou NULL
+}
+
 void liberar_biblioteca(BibliotecaMusical* biblioteca) {
     Musica* atual = biblioteca->primeiro;
     Musica* proximo;

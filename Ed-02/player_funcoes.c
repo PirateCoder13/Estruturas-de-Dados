@@ -19,6 +19,7 @@ MusicPlayer* criar_player() {
     player->fila_reproducao = criar_fila_reproducao();
     player->musica_atual = NULL;
     player->reproduzindo = 0; // 0 = parado
+    player->shuffle_ativo = 0; // shuffle desativado por padrão
     return player;
 }
 
@@ -88,7 +89,16 @@ void proximo_musica(MusicPlayer* player) {
         return;
     }
     
-    // Se nao ha fila, tentar proxima da biblioteca
+    // Verificar se o shuffle está ativo
+    if (player->shuffle_ativo) {
+        Musica* musica_aleatoria = obter_musica_aleatoria(player->biblioteca);
+        if (musica_aleatoria != NULL) {
+            reproduzir_musica(player, musica_aleatoria);
+            return;
+        }
+    }
+    
+    // Se nao ha fila e shuffle desativado, tentar proxima da biblioteca
     if (player->musica_atual != NULL && player->musica_atual->proximo != NULL) {
         reproduzir_musica(player, player->musica_atual->proximo);
     } else {
@@ -101,9 +111,23 @@ void anterior_musica(MusicPlayer* player) {
     Musica* anterior = voltar_historico(player->historico);
     
     if (anterior != NULL) {
+        // Parar reprodução atual se estiver tocando
+        if (player->reproduzindo == 1) {
+            parar_reproducao();
+        }
+        
         player->musica_atual = anterior;
         player->reproduzindo = 1;
         printf("<< Voltando para: '%s' - %s\n", anterior->titulo, anterior->artista);
+        
+        // Reproduzir a música do histórico
+        tocar_arquivo_mp3(anterior->arquivo);
+        
+        int min = anterior->duracao / 60;
+        int seg = anterior->duracao % 60;
+        printf("   Duracao: %d:%02d\n", min, seg);
+        printf("   Arquivo: %s\n", anterior->arquivo);
+        printf("   Status: Tocando\n");
     } else if (player->musica_atual != NULL && player->musica_atual->anterior != NULL) {
         // Se nao ha historico, usar lista da biblioteca
         reproduzir_musica(player, player->musica_atual->anterior);
@@ -138,7 +162,33 @@ void mostrar_status_player(MusicPlayer* player) {
     printf("Total de musicas na biblioteca: %d\n", player->biblioteca->total_musicas);
     printf("Musicas no historico: %d\n", player->historico->tamanho);
     printf("Musicas na fila: %d\n", player->fila_reproducao->tamanho);
+    printf("Modo shuffle: %s\n", player->shuffle_ativo ? "ATIVO" : "DESATIVADO");
     printf("\n");
+}
+
+// Função para alternar o modo shuffle
+void alternar_shuffle(MusicPlayer* player) {
+    player->shuffle_ativo = !player->shuffle_ativo;
+    printf("Modo shuffle %s!\n", player->shuffle_ativo ? "ATIVADO" : "DESATIVADO");
+}
+
+// Função para obter uma música aleatória da biblioteca
+Musica* obter_musica_aleatoria(BibliotecaMusical* biblioteca) {
+    if (biblioteca->total_musicas == 0) {
+        return NULL;
+    }
+    
+    // Gerar número aleatório baseado no tempo atual
+    srand((unsigned int)time(NULL));
+    int indice_aleatorio = rand() % biblioteca->total_musicas;
+    
+    // Navegar até a música no índice aleatório
+    Musica* atual = biblioteca->primeiro;
+    for (int i = 0; i < indice_aleatorio && atual != NULL; i++) {
+        atual = atual->proximo;
+    }
+    
+    return atual;
 }
 
 void liberar_player(MusicPlayer* player) {

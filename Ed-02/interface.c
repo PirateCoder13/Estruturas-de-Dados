@@ -31,7 +31,8 @@ void mostrar_menu() {
     printf(" 12. Ver fila de reproducao                             \n");
     printf(" 13. Ver historico                                      \n");
     printf(" 14. Status do player                                   \n");
-    printf(" 15. Sair                                               \n");
+    printf(" 15. Alternar modo shuffle                              \n");
+    printf(" 16. Sair                                               \n");
     printf("=========================================================\n");
     printf("Escolha uma opcao: ");
 }
@@ -100,36 +101,61 @@ void executar_player() {
                 
             case 5: // Buscar musica
                 printf("\n=== BUSCAR MUSICA ===\n");
-                printf("Digite o titulo da musica: ");
+                printf("Digite o titulo da musica (ou parte dele): ");
                 getchar(); // Limpar buffer
                 fgets(titulo, sizeof(titulo), stdin);
                 titulo[strcspn(titulo, "\n")] = 0; // Remover \n
                 
+                // Primeiro tenta busca exata
                 musica_encontrada = buscar_musica(player->biblioteca, titulo);
+                
+                // Se não encontrou, tenta busca por similaridade
+                if (musica_encontrada == NULL) {
+                    printf("Busca exata nao encontrada. Buscando similares...\n");
+                    musica_encontrada = buscar_musica_similar(player->biblioteca, titulo);
+                }
+                
                 if (musica_encontrada != NULL) {
                     int min = musica_encontrada->duracao / 60;
                     int seg = musica_encontrada->duracao % 60;
-                    printf("Musica encontrada:\n");
+                    if (strcmp(musica_encontrada->titulo, titulo) != 0) {
+                        printf("Musica similar encontrada:\n");
+                    } else {
+                        printf("Musica encontrada:\n");
+                    }
                     printf("Titulo: %s\n", musica_encontrada->titulo);
                     printf("Artista: %s\n", musica_encontrada->artista);
                     printf("Arquivo: %s\n", musica_encontrada->arquivo);
                     printf("Duracao: %d:%02d\n", min, seg);
                 } else {
-                    printf("Musica nao encontrada!\n");                }
+                    printf("Nenhuma musica encontrada com o termo '%s'!\n", titulo);
+                }
                 break;
                 
             case 6: // Reproduzir musica
                 printf("\n=== REPRODUZIR MUSICA ===\n");
-                printf("Digite o titulo da musica: ");
+                printf("Digite o titulo da musica (ou parte dele): ");
                 getchar(); // Limpar buffer
                 fgets(titulo, sizeof(titulo), stdin);
                 titulo[strcspn(titulo, "\n")] = 0; // Remover \n
                 
+                // Primeiro tenta busca exata
                 musica_encontrada = buscar_musica(player->biblioteca, titulo);
+                
+                // Se não encontrou, tenta busca por similaridade
+                if (musica_encontrada == NULL) {
+                    printf("Musica '%s' nao encontrada. Buscando similares...\n", titulo);
+                    musica_encontrada = buscar_musica_similar(player->biblioteca, titulo);
+                }
+                
                 if (musica_encontrada != NULL) {
+                    if (strcmp(musica_encontrada->titulo, titulo) != 0) {
+                        printf("Encontrada musica similar: '%s'\n", musica_encontrada->titulo);
+                    }
                     reproduzir_musica(player, musica_encontrada);
                 } else {
-                    printf("Musica nao encontrada!\n");                }
+                    printf("Nenhuma musica encontrada com o termo '%s'!\n", titulo);
+                }
                 break;
                 
             case 7: // Pausar/Retomar
@@ -174,7 +200,11 @@ void executar_player() {
                 mostrar_status_player(player);
                 break;
                 
-            case 15: // Sair
+            case 15: // Alternar modo shuffle
+                alternar_shuffle(player);
+                break;
+                
+            case 16: // Sair
                 printf("\nObrigado por usar o Music Player Simulator!\n");
                 printf("Desenvolvido por PiratariaCodificada\n");
                 break;
@@ -182,7 +212,7 @@ void executar_player() {
                 printf("Opcao invalida! Tente novamente.\n");
         }
         
-        if (opcao != 15) {
+        if (opcao != 16) {
             printf("\nPressione Enter para continuar...");
             getchar();
             if (opcao != 1 && opcao != 3 && opcao != 5 && opcao != 6 && opcao != 11) {
@@ -190,7 +220,7 @@ void executar_player() {
             }
         }
         
-    } while (opcao != 15);
+    } while (opcao != 16);
     
     // Liberar memória
     liberar_player(player);

@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Music Player",
+			"type": "shell",
+			"command": "gcc",
+			"args": [
+				"-o",
+				"music_player.exe",
+				"main.c",
+				"biblioteca_fila_historico.c",
+				"player_funcoes.c",
+				"interface.c",
+				"audio_player.c",
+				"-lwinmm"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$gcc"
+			]
+		}
+	]
+}
