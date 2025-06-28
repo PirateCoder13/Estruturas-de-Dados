@@ -1,3 +1,14 @@
+/*
+ * MUSIC PLAYER SIMULATOR - ESTRUTURAS DE DADOS
+ * Empresa: PiratariaCodificada
+ * Autores: Joao Gualberto, Yasmin Pereira, Gabriela Rocca
+ * 
+ * Implementacao das estruturas de dados:
+ * - Lista Duplamente Encadeada (Biblioteca Musical)
+ * - Pilha (Historico de Reproducao) 
+ * - Fila (Fila de Reproducao)
+ */
+
 #include "music_player.h"
 
 // ===========================================

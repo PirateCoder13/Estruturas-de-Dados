@@ -1,3 +1,11 @@
+/*
+ * MUSIC PLAYER SIMULATOR - INTERFACE DO USUARIO
+ * Empresa: PiratariaCodificada
+ * Autores: Joao Gualberto, Yasmin Pereira, Gabriela Rocca
+ * 
+ * Modulo responsavel pela interface de usuario via console
+ */
+
 #include "music_player.h"
 
 // Função externa para mostrar status do player
@@ -29,18 +37,12 @@ void mostrar_menu() {
 }
 
 void adicionar_musicas_exemplo(MusicPlayer* player) {
-    printf("Adicionando algumas musicas de exemplo...\n");
-    adicionar_musica(player->biblioteca, "Bohemian Rhapsody", "Queen", "", 355);
-    adicionar_musica(player->biblioteca, "Hotel California", "Eagles", "", 391);
-    adicionar_musica(player->biblioteca, "Imagine", "John Lennon", "", 183);
-    adicionar_musica(player->biblioteca, "Stairway to Heaven", "Led Zeppelin", "", 482);
-    adicionar_musica(player->biblioteca, "Sweet Child O Mine", "Guns N Roses", "", 356);
+    printf("Carregando musicas da pasta musicas/...\n");
     
-    // Adicionar arquivo MP3 real da pasta musicas (apenas o nome do arquivo)
-    printf("Carregando arquivo MP3 real da pasta musicas...\n");
-    adicionar_musica_mp3(player->biblioteca, "paper-planes-chill-future-beat-283956.mp3");
+    // Carregar apenas arquivos MP3 reais da pasta musicas/
+    carregar_todos_mp3(player->biblioteca);
     
-    printf("Musicas de exemplo adicionadas!\n");
+    printf("Musicas da pasta carregadas com sucesso!\n");
 }
 
 void executar_player() {
@@ -50,7 +52,7 @@ void executar_player() {
     int duracao;
     Musica* musica_encontrada;
       printf("Bem-vindo ao Music Player Simulator!\n");
-    printf("Desenvolvido para PiratariaCodificada\n\n");
+    printf("Desenvolvido por PiratariaCodificada\n\n");
       // Perguntar se quer carregar musicas de exemplo
     printf("Deseja carregar algumas musicas de exemplo? (1-Sim / 0-Nao): ");
     int carregar_exemplo;
@@ -174,7 +176,7 @@ void executar_player() {
                 
             case 15: // Sair
                 printf("\nObrigado por usar o Music Player Simulator!\n");
-                printf("Desenvolvido para PiratariaCodificada\n");
+                printf("Desenvolvido por PiratariaCodificada\n");
                 break;
                   default:
                 printf("Opcao invalida! Tente novamente.\n");

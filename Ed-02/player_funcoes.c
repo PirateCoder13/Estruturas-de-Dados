@@ -1,3 +1,11 @@
+/*
+ * MUSIC PLAYER SIMULATOR - FUNCOES DO PLAYER
+ * Empresa: PiratariaCodificada
+ * Autores: Joao Gualberto, Yasmin Pereira, Gabriela Rocca
+ *
+ * Modulo com as funcionalidades principais do player de musica
+ */
+
 #include "music_player.h"
 
 // ===========================================

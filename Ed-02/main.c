@@ -7,7 +7,7 @@ int main()
     printf("                                                         \n");
     printf("           Projeto: Estruturas de Dados                  \n");
     printf("           Empresa: PiratariaCodificada                  \n");
-    printf("           Autores: Joao Gualberto, Yasmin Pereira       \n");
+    printf(" Autores: Joao Gualberto, Yasmin Pereira, Gabriela Rocca \n");
     printf("                                                         \n");
     printf("=========================================================\n\n");
 

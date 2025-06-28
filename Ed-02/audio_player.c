@@ -1,6 +1,14 @@
+/*
+ * MUSIC PLAYER SIMULATOR - REPRODUCAO DE AUDIO
+ * Empresa: PiratariaCodificada
+ * Autores: Joao Gualberto, Yasmin Pereira, Gabriela Rocca
+ *
+ * Modulo responsavel pela reproducao real de arquivos MP3
+ */
+
 #include "music_player.h"
 
-// Variável global para controle de reprodução
+// Variavel global para controle de reproducao
 static char arquivo_atual[200] = "";
 static int tocando = 0;
 

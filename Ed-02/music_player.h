@@ -1,3 +1,11 @@
+/*
+ * MUSIC PLAYER SIMULATOR - CABECALHOS E ESTRUTURAS
+ * Empresa: PiratariaCodificada
+ * Autores: Joao Gualberto, Yasmin Pereira, Gabriela Rocca
+ *
+ * Definicoes de estruturas de dados e prototipos de funcoes
+ */
+
 #ifndef MUSIC_PLAYER_H
 #define MUSIC_PLAYER_H
 
